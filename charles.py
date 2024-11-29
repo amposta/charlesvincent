@@ -25,7 +25,7 @@ if 'posts' not in st.session_state:
 logo = st.file_uploader("Upload your logo (jpg, jpeg, png):", type=["jpg", "jpeg", "png"], key="logo_uploader")
 
 # Create columns for logo, title, and profile picture
-col1, col2, col3 = st.columns([1, 3, 1])
+col1, col2, col3 = st.columns([1, 3, 3])
 
 with col1:
     # Display the logo if uploaded
