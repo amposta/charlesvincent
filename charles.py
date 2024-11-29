@@ -50,17 +50,13 @@ col1, col2 = st.columns([3, 1])
 with col1:
     st.header("Create a New Blog Post")
     title = st.text_input("Post Title:")
-    content = st.text_area("Post Content:", help="Content of your blog post. (Minimum 50 characters)")
+    content = st.text_area("Post Content:")
     author = st.text_input("Your Name:", value="Charles Vincent B. Amposta")
-    tags = st.text_input("Tags (comma-separated):", help="Tags for your post, e.g., 'Tech, Python'")
-
-    # Check for valid post content (e.g., minimum length for content)
-    if content and len(content) < 50:
-        st.warning("Content should be at least 50 characters long.")
+    tags = st.text_input("Tags (comma-separated):")  # New field for tags
 
     # Submit button for creating a blog post
     if st.button("Submit Post"):
-        if title and content and author and len(content) >= 50:
+        if title and content and author:
             # Create a new blog post
             new_post = {
                 'title': title,
@@ -72,7 +68,14 @@ with col1:
             st.session_state.posts.append(new_post)  # Add the new post to the session state
             st.success("Blog post submitted successfully!")
         else:
-            st.error("Please fill in all required fields and ensure content is at least 50 characters.")
+            st.error("Please fill in all fields before submitting.")
 
 # Display the blog posts
-display_blog_posts(st.session_stat
+display_blog_posts(st.session_state.posts)
+
+# Reset functionality
+if st.button("Reset"):
+    st.session_state.posts = []  # Clear all posts
+    st.session_state.logo = None  # Clear logo
+    st.session_state.profile_picture = None  # Clear profile picture
+    st.rerun()
