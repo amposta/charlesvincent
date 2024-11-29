@@ -78,4 +78,4 @@ if st.button("Reset"):
     st.session_state.posts = []  # Clear all posts
     st.session_state.logo = None  # Clear logo
     st.session_state.profile_picture = None  # Clear profile picture
-    st.rerun()
+    st.rerun()  
