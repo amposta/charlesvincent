@@ -25,7 +25,7 @@ if 'posts' not in st.session_state:
 logo = st.file_uploader("Upload your logo (jpg, jpeg, png):", type=["jpg", "jpeg", "png"], key="logo_uploader")
 
 # Create columns for logo, title, and profile picture
-col1, col2, col3 = st.columns([1, 3, 3])
+col1, col2, col3 = st.columns([3, 6, 4])
 
 with col1:
     # Display the logo if uploaded
@@ -40,6 +40,9 @@ with col3:
     # Profile picture upload
     st.header("Profile Picture")
     profile_picture = st.file_uploader("Upload your profile picture (jpg, jpeg, png):", type=["jpg", "jpeg", "png"])
+
+    if profile_picture is not None:
+        st.image(profile_picture, caption="Profile Picture", use_column_width=True)
 
 # Create columns for user input
 col1, col2 = st.columns([3, 1])
@@ -73,4 +76,6 @@ display_blog_posts(st.session_state.posts)
 # Reset functionality
 if st.button("Reset"):
     st.session_state.posts = []  # Clear all posts
-    st.experimental_rerun()
+    st.session_state.logo = None  # Clear logo
+    st.session_state.profile_picture = None  # Clear profile picture
+    st.rerun()
